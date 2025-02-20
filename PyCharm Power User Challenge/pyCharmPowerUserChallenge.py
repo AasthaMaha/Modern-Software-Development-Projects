@@ -3,7 +3,7 @@ def print_board(board):
     Prints the current state of the Tic-Tac-Toe board in a formatted manner.
 
     Args:
-        board (list of list of str): A 2D list representing the Tic-Tac-Toe board.
+        board (list of str): A 2D list representing the Tic-Tac-Toe board.
                                      Each cell contains "X", "O", or a blank space.
                                      
     Returns:
@@ -22,7 +22,7 @@ def check_winner(board, player):
     vertically, or diagonally on the board.
 
     Args:
-        board (list of list of str): The 2D list representing the board.
+        board (list of str): The 2D list representing the board.
                                      Each cell contains "X", "O", or a blank space.
         player (str): The token of the current player ("X" or "O").
 
@@ -42,7 +42,7 @@ def is_full(board):
     Checks if the Tic-Tac-Toe board is full, meaning there are no empty spaces left.
 
     Args:
-        board (list of list of str): A 2D list representing the Tic-Tac-Toe board.
+        board (list of str): A 2D list representing the Tic-Tac-Toe board.
                                      Each cell contains "X", "O", or a blank space.
 
     Returns:
@@ -59,7 +59,7 @@ def get_valid_move(board, player):
     for both row and column, and that the selected cell is not already occupied.
 
     Args:
-        board (list of list of str): A 2D list representing the Tic-Tac-Toe board.
+        board (list of str): A 2D list representing the Tic-Tac-Toe board.
                                      Each cell contains "X", "O", or a blank space.
         player (str): The token of the current player ("X" or "O").
 
