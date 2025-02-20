@@ -1,10 +1,12 @@
 def print_board(board):
-    for r in board:
-        print(" | ".join(r))
+    """Displays the current state of the board."""
+    for row in board:
+        print(" | ".join(row))
         print("-" * 5)
 
 
 def check_winner(board, player):
+    """Checks if the player has won the game."""
     for i in range(3):
         if all(board[i][j] == player for j in range(3)) or all(board[j][i] == player for j in range(3)):
             return True
@@ -14,34 +16,50 @@ def check_winner(board, player):
 
 
 def is_full(board):
-    return all(c != " " for r in board for c in r)
+    """Checks if the board is full."""
+    return all(cell != " " for row in board for cell in row)
 
+def get_valid_move(board,player):
+    """Will ask the player for a move and validate it."""
+    while True:
+        try:
+            row, col = map(int, input(f"Player {player}, enter row and col (0-2): ").split())
+            if row not in range(3) or col not in range(3):
+                print("Out of range! Enter values between 0 and 2.")
+            elif board[row][col] != " ":
+                print("Spot already taken. Choose another one.")
+            else:
+                return row, col
+        except ValueError:
+            print("Invalid input! Enter two numbers separated by a space.")
+
+        """Makes sure that players can't enter invalid values.'"""
+        """Added messages to help  guide and understand what the players should enter.'"""
 
 def tic_tac_toe():
+    """Main function of the game. It will run the Tic-Tac-Toe game loop."""
     board = [[" " for _ in range(3)] for _ in range(3)]
-    players = ["X", "O"]
+    player_tokens = ["X", "O"]
+
     print("Tic-Tac-Toe Game")
-    players(board)
-    for t in range(9):
-        pl = players[t % 2]
-        while 1:
-            try:
-                row, col = map(int, input(f"P {pl}, row col (0-2): ").split())
-                if board[row][col] == " ":
-                    board[row][col] = pl
-                    break
-                else:
-                    print("Nope. Again.")
-            except:
-                print("Wrong. 0-2 pls.")
-        players(board)
-        if check_winner(board, pl):
-            print(f"P {pl} wins!")
+    print_board(board)
+
+    for turn in range(9):
+        current_player = player_tokens[turn % 2]
+        row, col = get_valid_move(board,current_player)
+
+        board[row][col] = current_player
+        print_board(board)
+
+        if check_winner(board, current_player):
+            print(f"Player {current_player} wins!")
             return
+
         if is_full(board):
-            print("Draw!")
+            print("It's a Draw!")
             return
-    print("Draw!")
+
+    print("It's a Draw!")
 
 
 tic_tac_toe()
