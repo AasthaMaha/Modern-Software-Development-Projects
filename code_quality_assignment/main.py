@@ -1,7 +1,4 @@
-import math
-import random
-
-
+from line_profiler import LineProfiler
 def expensive_op(n):
     total = 0
     for i in range(1000):
