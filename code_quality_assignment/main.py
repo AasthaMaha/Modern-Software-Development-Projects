@@ -15,9 +15,14 @@ def profile_main():
     print("Done")
 
 if __name__ == "__main__":
-    profiler = LineProfiler()
-    profiler.add_function(expensive_op)
-    profiler.enable()
-    profile_main()
-    profiler.disable()
-    profiler.print_stats()
+    use_profiler = False  #have to set this to True when profiling
+
+    if use_profiler:
+        profiler = LineProfiler()
+        profiler.add_function(expensive_op)
+        profiler.enable()
+        profile_main()
+        profiler.disable()
+        profiler.print_stats()
+    else:
+        profile_main()
